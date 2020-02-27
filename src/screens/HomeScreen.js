@@ -29,8 +29,8 @@ const HomeScreen = ({ navigation }) => {
     }
   ];
 
-  const showDetail = () => {
-    navigation.navigate("RecipeDetails");
+  const showDetail = recipe => {
+    navigation.navigate("RecipeDetails", recipe);
   };
 
   return (
@@ -40,7 +40,7 @@ const HomeScreen = ({ navigation }) => {
         data={recipes}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => showDetail()}>
+            <TouchableOpacity onPress={() => showDetail(item)}>
               <RecipeItem recipe={item} />
             </TouchableOpacity>
           );
