@@ -1,8 +1,13 @@
 import React from "react";
-import { StyleSheet, FlatList, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  FlatList,
+  SafeAreaView,
+  TouchableOpacity
+} from "react-native";
 import RecipeItem from "../components/RecipeItem";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const recipes = [
     {
       title: "Best Brownies",
@@ -24,13 +29,21 @@ const HomeScreen = () => {
     }
   ];
 
+  const showDetail = () => {
+    navigation.navigate("RecipeDetails");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         keyExtractor={recipe => recipe.title}
         data={recipes}
         renderItem={({ item }) => {
-          return <RecipeItem recipe={item} />;
+          return (
+            <TouchableOpacity onPress={() => showDetail()}>
+              <RecipeItem recipe={item} />
+            </TouchableOpacity>
+          );
         }}
       />
     </SafeAreaView>
